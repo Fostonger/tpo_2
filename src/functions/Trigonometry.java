@@ -9,16 +9,17 @@ public final class Trigonometry implements TrigonometryCalculatable {
     public double sin(double x) {
         Double tableValue = TrigonometryFunction.tableValue(x, TrigonometryFunction.SIN);
         if (tableValue != null) { return tableValue; }
-
+        x %= Math.PI * 2;
         double cos = cos(x);
-        return Math.sqrt(1 - cos * cos);
+        return (( (x > Math.PI || (x < 0 && x > -Math.PI)) ? -1 : 1) * Math.sqrt(1 - cos * cos));
     }
     public double cot(double x) {
         Double tableValue = TrigonometryFunction.tableValue(x, TrigonometryFunction.COT);
         if (tableValue != null) { return tableValue; }
 
         double cos = cos(x);
-        return cos / Math.sqrt(1 - cos * cos);
+        double sin = sin(x);
+        return cos / sin;
     }
     public double tan(double x) {
         Double tableValue = TrigonometryFunction.tableValue(x, TrigonometryFunction.TAN);

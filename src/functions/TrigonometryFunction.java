@@ -14,8 +14,19 @@ public enum TrigonometryFunction {
             case COS -> { return cosVal(x); }
             case TAN -> { return tanVal(x); }
             case COT -> { return cotVal(x); }
-            case CSC -> { return cosVal(1/x); }
-            case SEC -> { return sinVal(1/x); }
+            case CSC -> {
+                if ( compare(x, degToRad(0)) || compare(x, degToRad(180)) ) {
+                    throw new IllegalArgumentException("csc is not defined on 0 and 180 degrees");
+                }
+                Double sin = sinVal(x);
+                return (sin != null) ? 1 / sin : null;
+            }
+            case SEC -> {
+                if ( compare(x, degToRad(90)) || compare(x, degToRad(270)) ) {
+                    throw new IllegalArgumentException("sec is not defined on 90 and 270 degrees");
+                }
+                return cosVal(1/x);
+            }
             default  -> { return null; }
         }
     }

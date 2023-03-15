@@ -14,9 +14,16 @@ public final class BaseLog implements LnCalculatable {
 
         double result = 0;
         double term = 1;
-        for (int i = 1; i <= n; i++) {
-            term *= (x - 1) / x;
-            result += term / i;
+        if (x < 1) {
+            for (int i = 1; i <= n; i++) {
+                term *= (x - 1);
+                result += ((i%2==0) ? -1 : 1 ) * term / i;
+            }
+        } else {
+            for (int i = 1; i <= n; i++) {
+                term *= (x - 1) / x;
+                result += term / i;
+            }
         }
         return result;
     }
