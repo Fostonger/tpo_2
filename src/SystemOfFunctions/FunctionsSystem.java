@@ -24,9 +24,9 @@ public class FunctionsSystem {
     }
 
     private double logarithmic(double x) {
-        double log_10 = logarithms.log10(x);
-        double log_3 = logarithms.log3(x);
-        double log_2 = logarithms.log2(x);
+        double log_10 = logarithms.log(10, x);
+        double log_3 = logarithms.log(3, x);
+        double log_2 = logarithms.log(2, x);
         double ln = logarithms.ln(x);
 
         return Math.pow((((log_10 / log_10) * log_3) * (Math.pow(log_2, 3) * (ln - ln))), 3) - (log_2 / log_10);

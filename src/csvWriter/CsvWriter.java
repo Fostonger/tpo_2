@@ -2,6 +2,7 @@ package csvWriter;
 
 import functions.BaseCos;
 import functions.BaseLog;
+import functions.Trigonometry;
 
 import java.io.File;
 import java.io.IOException;

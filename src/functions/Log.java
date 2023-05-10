@@ -3,23 +3,13 @@ package functions;
 import interfaces.LnCalculatable;
 import interfaces.LogCalculatable;
 
-public final class Log implements LogCalculatable {
+public class Log implements LogCalculatable {
     private LnCalculatable lnCalculator;
     public Log(LnCalculatable lnCalculator) { this.lnCalculator = lnCalculator; }
-    public double log10(double x) {
+    public double log(int base, double x) {
         double table = tableValues(x, 10);
         if (table != -1) { return table; }
-        return ln(x) / ln(10);
-    }
-    public double log3(double x) {
-        double table = tableValues(x, 3);
-        if (table != -1) { return table; }
-        return ln(x) / ln(3);
-    }
-    public double log2(double x) {
-        double table = tableValues(x, 2);
-        if (table != -1) { return table; }
-        return ln(x) / ln(2);
+        return ln(x) / ln(base);
     }
     public double ln(double x) {
         return lnCalculator.ln(x);

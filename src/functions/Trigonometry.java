@@ -3,14 +3,14 @@ package functions;
 import interfaces.CosCalculatable;
 import interfaces.TrigonometryCalculatable;
 
-public final class Trigonometry implements TrigonometryCalculatable {
+public class Trigonometry implements TrigonometryCalculatable {
     private CosCalculatable cosCalculator;
     public Trigonometry(CosCalculatable cosCalculator) { this.cosCalculator = cosCalculator; }
     public double sin(double x) {
         Double tableValue = TrigonometryFunction.tableValue(x, TrigonometryFunction.SIN);
         if (tableValue != null) { return tableValue; }
-        x %= Math.PI * 2;
         double cos = cos(x);
+        x %= Math.PI * 2;
         return (( (x > Math.PI || (x < 0 && x > -Math.PI)) ? -1 : 1) * Math.sqrt(1 - cos * cos));
     }
     public double cot(double x) {
