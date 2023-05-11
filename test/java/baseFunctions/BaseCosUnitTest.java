@@ -16,17 +16,16 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 class BaseCosUnitTest {
     private BaseCos sut;
     @BeforeEach
-    void setUp() {
-        sut = new BaseCos(1000);
-    }
-    @ParameterizedTest(name = "{arguments}")
+    void setUp() { sut = new BaseCos(1000); }
+    @ParameterizedTest
     @MethodSource("cosArgs")
-    void seriesParametrizedTest(double x, double expected) {
+    void cosSeriesParametrizedTest(double x, double expected) {
         assertEquals(expected, sut.cos(x), 0.00001);
     }
     static Stream<Arguments> cosArgs() {
         return Stream.of(
                 Arguments.of(0, 1),
+                Arguments.of(1, 0.5403, 0.001),
                 Arguments.of(PI, -1),
                 Arguments.of(PI / 2, 0),
                 Arguments.of(PI / 3, 0.5),
@@ -38,6 +37,7 @@ class BaseCosUnitTest {
                 Arguments.of(2 * PI, 1),
                 Arguments.of(3 * PI, -1),
                 Arguments.of(3 * PI / 2, 0),
-                Arguments.of(16 * PI / 3, -0.5));
+                Arguments.of(16 * PI / 3, -0.5),
+                Arguments.of(10, -0.83907, 0.0001));
     }
 }
